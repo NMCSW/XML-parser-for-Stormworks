@@ -2,6 +2,34 @@ import re
 import os
 from fnmatch import fnmatch
 import PySimpleGUI as sg
+import keyboard
+import pygetwindow as gw
+import ctypes
+import pyperclip
+
+window_title = 'XML parser'
+
+
+def get_keyboard_layout():
+    foreground_window = gw.getWindowsWithTitle(gw.getActiveWindowTitle())
+    if foreground_window:
+        foreground_window = foreground_window[0]
+        thread_id = ctypes.windll.user32.GetWindowThreadProcessId(foreground_window._hWnd, 0)
+        layout_id = ctypes.windll.user32.GetKeyboardLayout(thread_id)
+        layout_name = hex(layout_id & 0xFFFF).upper()
+        return layout_name
+    else:
+        return None
+    
+
+def is_window_foreground(window_title):
+    foreground_window = gw.getActiveWindow()
+
+    if foreground_window:
+        return foreground_window.title == window_title
+    else:
+        return False
+
 
 def find_files(directory, pattern):
     files = []
@@ -9,6 +37,7 @@ def find_files(directory, pattern):
         for filename in [f for f in filenames if fnmatch(f, pattern)]:
             files.append(os.path.join(root, filename))
     return files
+
 
 def parse_files(directory_path,  file_pattern = '*island*.xml', size = 400):
     result = find_files(directory_path, file_pattern)
@@ -41,6 +70,7 @@ def parse_files(directory_path,  file_pattern = '*island*.xml', size = 400):
     except:
         sg.popup('Exception:', 'Broken files')
 
+
 def read_file():
     try:
         with open(f"{os.getenv('APPDATA')}\\xml_parser\\xml_parser.cfg", "r+", encoding="utf-8") as cfg_file:
@@ -48,6 +78,7 @@ def read_file():
     except:
         print("read_exception")
         return ""
+
 
 def change_file(content):
     if not os.path.exists(f"{os.getenv('APPDATA')}\\xml_parser"):
@@ -57,19 +88,27 @@ def change_file(content):
         cfg_file.truncate(0);cfg_file.seek(0)
         cfg_file.write(content)
 
+
+def paste():
+    if get_keyboard_layout() != "0X409" and is_window_foreground(window_title):
+        keyboard.write(pyperclip.paste())
+
+
 def window():
     sg.theme('DarkAmber')
 
     layout = [  [sg.Text('Path to tiles folder:')],
-                [sg.InputText(read_file())],
+                [sg.InputText(read_file(), key="-path-")],
                 [sg.Text("Size:")],
-                [sg.InputText("400")],
+                [sg.InputText("400", key="-size-")],
                 [sg.Text("Additional params (not to use if you don't know):")],
-                [sg.InputText()],
+                [sg.InputText("", key="-param-")],
                 [sg.Button('Parse'), sg.Button('Exit')] 
             ]
 
-    window = sg.Window('xml parser', layout)
+    window = sg.Window(window_title, layout)
+
+    keyboard.add_hotkey('Ctrl + v', lambda: paste())
 
     while True:
         event, values = window.read()
