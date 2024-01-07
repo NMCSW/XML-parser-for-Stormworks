@@ -3,14 +3,12 @@ import os
 from fnmatch import fnmatch
 import PySimpleGUI as sg
 
-
 def find_files(directory, pattern):
     files = []
     for root, dirs, filenames in os.walk(directory):
         for filename in [f for f in filenames if fnmatch(f, pattern)]:
             files.append(os.path.join(root, filename))
     return files
-
 
 def parse_files(directory_path,  file_pattern = '*island*.xml', size = 400):
     result = find_files(directory_path, file_pattern)
@@ -43,47 +41,50 @@ def parse_files(directory_path,  file_pattern = '*island*.xml', size = 400):
     except:
         sg.popup('Exception:', 'Broken files')
 
-
 def read_file():
-    data = ""
     try:
         with open(f"{os.getenv('APPDATA')}\\xml_parser\\xml_parser.cfg", "r+", encoding="utf-8") as cfg_file:
-            data = cfg_file.read()
-            return data
+            return cfg_file.read()
     except:
         print("read_exception")
-
+        return ""
 
 def change_file(content):
     if not os.path.exists(f"{os.getenv('APPDATA')}\\xml_parser"):
         os.makedirs(f"{os.getenv('APPDATA')}\\xml_parser")
+
     with open(f"{os.getenv('APPDATA')}\\xml_parser\\xml_parser.cfg", "a+", encoding="utf-8") as cfg_file:
-        cfg_file.truncate(0)
-        cfg_file.seek(0)
+        cfg_file.truncate(0);cfg_file.seek(0)
         cfg_file.write(content)
 
-sg.theme('DarkAmber')
-layout = [  [sg.Text('Path to tiles folder:')],
-            [sg.InputText(read_file())],
-            [sg.Text("Size:")],
-            [sg.InputText("400")],
-            [sg.Text("Additional params (not to use if you don't know):")],
-            [sg.InputText()],
-            [sg.Button('Parse'), sg.Button('Exit')] ]
+def window():
+    sg.theme('DarkAmber')
 
-window = sg.Window('xml parser', layout)
+    layout = [  [sg.Text('Path to tiles folder:')],
+                [sg.InputText(read_file())],
+                [sg.Text("Size:")],
+                [sg.InputText("400")],
+                [sg.Text("Additional params (not to use if you don't know):")],
+                [sg.InputText()],
+                [sg.Button('Parse'), sg.Button('Exit')] 
+            ]
 
-while True:
-    event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'Exit': # if user closes window or clicks cancel
-        break
-    if event == "Parse":
-        if os.path.exists(values[0]) and len(values[0].split(".")) <= 2 and values[0] != ".":
-            change_file(values[0])
-            if values[2] != "":
-                parse_files(values[0], file_pattern = values[2], size = values[1])
+    window = sg.Window('xml parser', layout)
+
+    while True:
+        event, values = window.read()
+        if event == sg.WIN_CLOSED or event == 'Exit':
+            break
+        if event == "Parse":
+            if os.path.exists(values[0]) and len(values[0].split(".")) <= 2 and values[0] != ".":
+                change_file(values[0])
+                if values[2] != "":
+                    parse_files(values[0], file_pattern = values[2], size = values[1])
+                else:
+                    parse_files(values[0], size = values[1])
             else:
-                parse_files(values[0], size = values[1])
-        else:
-            sg.popup('Exception:', 'Please enter correct path to tiles folder!')
-window.close()
+                sg.popup('Exception:', 'Please enter correct path to tiles folder!')
+    window.close()
+
+if __name__ == "__main__":
+    window()
