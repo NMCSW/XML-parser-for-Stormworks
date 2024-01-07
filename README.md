@@ -8,7 +8,7 @@ Also parser can modificate all ```.xml``` files in a folder.
 
 **[ Options ]**
 The first input uses for entering path of tiles folder. (```...\Stormworks\rom\data\tiles```)
-(The parser remembers the entered path by creating a file ```xml_parser.cfg in the``` ```Roaming\xml_parser\``` directory
+(The parser remembers the entered path by creating a file ```xml_parser.cfg``` in the ```Roaming\xml_parser\``` directory
 and saving the entered path there. Then the next time you start the path input field will be automatically filled in with the contents of the file.)
 
 The second input uses for entering a size of a hangar. (400 for example)
