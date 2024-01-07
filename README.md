@@ -18,7 +18,7 @@ The first input uses for entering path of tiles folder. (```...\Stormworks\rom\d
 (The parser remembers the entered path by creating a file ```xml_parser.cfg``` in the ```Roaming\xml_parser\``` directory
 and saving the entered path there. Then the next time you start the path input field will be automatically filled in with the contents of the file.)
 
-The second input uses for entering a size of a hangar. (400 for example)
+The second input uses for entering a number of blocks in each dimension to be added to a hanger. (default value is ```400```)
 
 The third input can change the pattern for searching ```.xml``` files. (default str. value is ``` '*island*.xml' ```)
 
