@@ -13,7 +13,7 @@ and saving the entered path there. Then the next time you start the path input f
 
 The second input uses for entering a size of a hangar. (400 for example)
 
-The third input can change the pattern for searching .xml files. (default str. value is '* island *.xml')
+The third input can change the pattern for searching .xml files. (default str. value is ''' '*island*.xml' ''')
 
 [ Exceptions ]
 "Please enter correct path to tiles folder!" | A non-existent path to the tiles folder was entered. The error is related to 1 input field.
