@@ -18,7 +18,7 @@ The third input can change the pattern for searching ```.xml``` files. (default 
 __**[ Exceptions ]**__
 "Please enter correct path to tiles folder!" | A non-existent path to the tiles folder was entered. The error is related to 1 input field.
 "Wrong path or incorrect additional params!" | The folder exists but no ```.xml``` files were found in it or they do not match the additional params search pattern. The error is related to 1 or 3 input field.
-"Broken files" | Error when changing .xml file, the chance of occurrence is minimal. The error is related to 1 input field.
+"Broken files" | Error when changing ```.xml``` file, the chance of occurrence is minimal. The error is related to 1 input field.
 
 
 
