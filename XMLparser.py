@@ -122,7 +122,7 @@ def window():
                 else:
                     parse_files(values[0], size = values[1])
             else:
-                sg.popup('Exception:', 'Please enter correct path to tiles folder!')
+                sg.popup('Exception:', 'Please enter correct path to the tiles folder!')
     window.close()
 
 if __name__ == "__main__":
