@@ -4,7 +4,7 @@ This parser is used to modify the size of hangars in the game Stormworks.
 
 [ WARNING! ] 
 This parser can create additional file and directory (Roaming\xml_parser\xml_parser.cfg).
-This parser can modificate all xml files in a folder.
+Also parser can modificate all xml files in a folder.
 
 [ Options ]
 The first input uses for entering path of tiles folder. (...\Stormworks\rom\data\tiles)
