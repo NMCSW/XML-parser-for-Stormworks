@@ -1,4 +1,4 @@
-<img src="./images/logom2.png" alt="Logo of the project" align="right">
+
 
 ## **[ XMLparser ]**
 **Simple parser for modifying all xml files of a certain type inside a folder.
