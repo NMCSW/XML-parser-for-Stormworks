@@ -9,4 +9,4 @@ Also parser can modificate all xml files in a folder.
 [ Options ]
 The first input uses for entering path of tiles folder. (...\Stormworks\rom\data\tiles)
 The second input uses for entering a size of a hangar. (400 for example)
-The third input can change the pattern for searching .xml files. (default str value is '*island*.xml' )
+The third input can change the pattern for searching .xml files. (default str. value is '*island*.xml' )
