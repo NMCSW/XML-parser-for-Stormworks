@@ -98,11 +98,11 @@ def window():
     sg.theme('DarkAmber')
 
     layout = [  [sg.Text('Path to tiles folder:')],
-                [sg.InputText(read_file(), key="-path-")],
+                [sg.InputText(read_file())],
                 [sg.Text("Size:")],
-                [sg.InputText("400", key="-size-")],
+                [sg.InputText("400")],
                 [sg.Text("Additional params (not to use if you don't know):")],
-                [sg.InputText("", key="-param-")],
+                [sg.InputText()],
                 [sg.Button('Parse'), sg.Button('Exit')] 
             ]
 
