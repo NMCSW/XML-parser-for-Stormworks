@@ -4,15 +4,13 @@ from fnmatch import fnmatch
 import PySimpleGUI as sg
 
 
-#directory_path = r"C:\Program Files (x86)\Steam\steamapps\common\Stormworks\rom\data\tiles" #ПУТЬ К ПАПКЕ tiles
- #ЕСЛИ ЧТО-ТО НЕ ЗАХМЫЛИЛО, ПОМЕНЯТЬ НА *.xml
-
 def find_files(directory, pattern):
     files = []
     for root, dirs, filenames in os.walk(directory):
         for filename in [f for f in filenames if fnmatch(f, pattern)]:
             files.append(os.path.join(root, filename))
     return files
+
 
 def parse_files(directory_path,  file_pattern = '*island*.xml', size = 400):
     result = find_files(directory_path, file_pattern)
@@ -45,6 +43,7 @@ def parse_files(directory_path,  file_pattern = '*island*.xml', size = 400):
     except:
         sg.popup('Exception:', 'Broken files')
 
+
 def read_file():
     data = ""
     try:
@@ -54,15 +53,14 @@ def read_file():
     except:
         print("read_exception")
 
+
 def change_file(content):
     if not os.path.exists(f"{os.getenv('APPDATA')}\\xml_parser"):
         os.makedirs(f"{os.getenv('APPDATA')}\\xml_parser")
-
     with open(f"{os.getenv('APPDATA')}\\xml_parser\\xml_parser.cfg", "a+", encoding="utf-8") as cfg_file:
         cfg_file.truncate(0)
         cfg_file.seek(0)
         cfg_file.write(content)
-
 
 sg.theme('DarkAmber')
 layout = [  [sg.Text('Path to tiles folder:')],
