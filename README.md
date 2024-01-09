@@ -10,6 +10,7 @@ This parser is used to modify the size of hangars in the game [Stormworks](https
 ### **[ WARNING! ]**
 This parser can create additional file and directory (```Roaming\xml_parser\xml_parser.cfg```).
 Also parser can modificate all ```.xml``` files in a folder.
+The program in the releases was compiled with a custom image in the PySimpleGui module, so its weight will be different if you try to compile it yourself.
 
 ---
 
@@ -20,7 +21,7 @@ and saving the entered path there. Then the next time you start the path input f
 
 The second input uses for entering a number of blocks in each dimension to be added to a hanger. (default value is ```400```)
 
-The third input can change the pattern for searching ```.xml``` files. (default str. value is ``` '*island*.xml' ```)
+The third input can change the pattern for searching ```.xml``` files. (default str. value is ``` '*island*.xml' ```, to change all ```.xml``` files enter ```*.xml``` )
 
 ---
 
