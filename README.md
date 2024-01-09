@@ -21,7 +21,7 @@ and saving the entered path there. Then the next time you start the path input f
 
 The second input uses for entering a number of blocks in each dimension to be added to a hanger. (default value is ```400```)
 
-The third input can change the pattern for searching ```.xml``` files. (default str. value is ``` '*island*.xml' ```, to change all ```.xml``` files enter ```*.xml``` )
+The third input can change the pattern for searching ```.xml``` files. (default str. value is ``` '*island*.xml' ```, to change all ```.xml``` files in a folder enter ```*.xml``` )
 
 ---
 
