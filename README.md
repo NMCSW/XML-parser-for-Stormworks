@@ -10,7 +10,8 @@ This parser is used to modify the size of hangars in the game [Stormworks](https
 ### **[ WARNING! ]**
 This parser can create additional file and directory (```Roaming\xml_parser\xml_parser.cfg```).
 Also parser can modificate all ```.xml``` files in a folder.
-The program in the releases was compiled with a custom image in the PySimpleGui module, so its weight will be different if you try to compile it yourself.
+The program in the releases was compiled with a custom image in the PySimpleGui module, so its weight will be different if you try to compile it yourself. 
+(if you want to compile the same program as mine, replace your ```Lib\site-packages\PySimpleGUI\PySimpleGui.py``` file with the one given in the "Changed module" folder)
 
 ---
 
